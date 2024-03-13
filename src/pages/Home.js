@@ -54,7 +54,7 @@ const [roomid,setRoomId]=useState('');
         <div className='inputCode'>
             <input type="text" className='inputBox' onChange={(e)=>setRoomId(e.target.value)} value={roomid} placeholder='ENTER ID ' onKeyUp={handleInputEnter} ></input>
             <div className='inputBtn'>
-            <button onClick={joinRoom} className='btn joinbtn'>Join Room</button>
+            <button onClick={joinRoom}  className='btn joinbtn'>Join Room</button>
             <button onClick={createNewRoom}  className='btn btn2 joinbtn  '>Create Room</button>
             </div>
         </div>

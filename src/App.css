@@ -82,3 +82,72 @@ footer{
 }
 
 
+.mainWrap{
+  display: grid;
+  height: 100vh;
+  grid-template-columns:230px 1fr ;
+
+}
+
+.aside{
+  background: #1c1e29;
+  padding: 16px;
+  color: #fff;
+ 
+  display: flex;
+  flex-direction: column;
+
+}
+
+.asideInner{
+  flex: 1;
+}
+
+
+.clientsList{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+
+.client{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+.userNmae{
+  margin-top: 10px;
+}
+
+
+.logo{
+  border-bottom: 1px solid rgb(201, 113, 18);
+  padding-bottom:10px ;
+}
+.logoImage{
+  height: 60px;
+
+}
+
+.leavebtn{
+  /* margin-top: 20px; */
+  background-color: orangered;
+
+}
+.leavebtn:hover{
+  background: rgb(235, 159, 132);
+}
+
+.copybtn{
+
+  background-color: orangered;
+
+}
+
+.copybtn:hover{
+  background: rgb(235, 159, 132);
+}
