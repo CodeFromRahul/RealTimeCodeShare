@@ -1,7 +1,21 @@
-import React ,{useState}from 'react'
+import React ,{useState,useRef,useEffect}from 'react'
 import Client from '../components/client';
-import Editor from '../components/Editor'
+import Editor from '../components/Editors';
+import { initSocket } from '../socket';
+import ACTIONS from '../Actions';
 const Editorpage = () => {
+  const socketRef = useRef(null);
+  
+  useEffect(()=>{
+    const init = async () => {
+      socketRef.current = await initSocket();
+      socketRef.current.emit(ACTIONS.JOIN,{
+        roomId,
+      })
+    };
+  },[]);
+
+
   const [clients,setclients] =useState([
     {sockedid:1},
     {sockedid:3},
