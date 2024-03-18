@@ -1,8 +1,10 @@
-import React ,{useState,useRef,useEffect}from 'react'
+import React ,{useState,useRef,useEffect} from 'react'
 import Client from '../components/client';
 import Editor from '../components/Editors';
 import { initSocket } from '../socket';
 import ACTIONS from '../Actions';
+import {home} from "./Home"
+import client from '../components/client';
 const Editorpage = () => {
   const socketRef = useRef(null);
   
@@ -10,9 +12,10 @@ const Editorpage = () => {
     const init = async () => {
       socketRef.current = await initSocket();
       socketRef.current.emit(ACTIONS.JOIN,{
-        roomId,
+        roomid,
       })
     };
+    init();
   },[]);
 
 
