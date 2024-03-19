@@ -7,6 +7,7 @@ const ACTIONS = require('./src/Actions');
 
 
 
+
 const server = http.createServer(app);
 const io = new Server(server);
 
@@ -21,6 +22,8 @@ return {
    });
 }
 
+
+
 io.on('connection',(socket)=>{
     console.log('socket connected',socket.id);
     socket.on(ACTIONS.JOIN,({roomid})=>{
@@ -31,7 +34,7 @@ io.on('connection',(socket)=>{
        clients.forEach(({socketId})=>{
          io.to(socketId).emit(ACTIONS.JOIN,{
             clients,
-            roomid,
+          
             socketId:socket.id,
          })
        })
