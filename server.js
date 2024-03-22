@@ -32,15 +32,30 @@ io.on('connection',(socket)=>{
         const clients = getAllConnectedClients(roomid);
        console.log(clients)
        clients.forEach(({socketId})=>{
-         io.to(socketId).emit(ACTIONS.JOIN,{
-            clients,
-          
-            socketId:socket.id,
+         io.to(socketId).emit(ACTIONS.JOINED,{
+           clients,
+           roomid,
+           socketId:socket.id,
          })
        })
     });
-});
 
+    socket.on('disconnecting',()=>{
+      const rooms = [...socket.rooms];
+      rooms.forEach((roomid)=>{
+        socket.in(roomid).emit(ACTIONS.DISCONNECTED,{
+          socketId:socket.id,
+          roomid:userSocketMap[socket.id],
+        });
+      });
+
+      delete userSocketMap[socket.id];
+      socket.leave();
+       
+
+    });
+
+});
 
 
 
@@ -48,3 +63,5 @@ const PORT = process.env.PORT||5001;
 server.listen(PORT,()=>{
     console.log(`server is listininig at ${PORT}`)
 })
+
+

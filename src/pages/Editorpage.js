@@ -4,7 +4,7 @@ import Editor from '../components/Editors';
 import { initSocket } from '../socket';
 import ACTIONS from '../Actions';
 import Toast from 'react-hot-toast';
-import { useLocation , useNavigate, Navigate} from 'react-router-dom';
+import { useLocation , useNavigate,useParams, Navigate} from 'react-router-dom';
 
 import client from '../components/client';
 import toast from 'react-hot-toast';
@@ -12,6 +12,12 @@ const Editorpage = () => {
   const socketRef = useRef(null);
   const location = useLocation();
   const reactNavigator =useNavigate();
+  const {roomid} =useParams();
+
+  const [clients,setclients] =useState([
+    
+  ]);
+ 
 
   useEffect(()=>{
     const init = async () => {
@@ -26,26 +32,30 @@ const Editorpage = () => {
       }
 
       socketRef.current.emit(ACTIONS.JOIN,{
-        roomid:location.state.roomid,
+        roomid,
       });
 
       // Listining for joined event
-      socketRef.current.on(ACTIONS.JOINED,({clients,roomid,socketId})=>{})
+      socketRef.current.on(ACTIONS.JOINED,({clients,roomid,socketId})=>{
               if(roomid!=location.state.roomid){
-                
+                toast.success(`${roomid} joined`)
+                console.log(`${roomid} joined`);
               }
+
+              setclients(clients);
+            });
+            // listening for disconnected
+
+          socketRef.current.on(ACTIONS.DISCONNECTED,({socketId,username})=>{
+            toast.success(`${roomi}`)
+d
+          })
     };
     init();
   },[]);
 
 
-  const [clients,setclients] =useState([
-    {sockedid:1},
-    {sockedid:3},
-    {sockedid:2 },
-    {sockedid:24}
-  ]);
- 
+
   if(!location.state){
     return <Navigate to="/"/>;
 

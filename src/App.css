@@ -85,7 +85,7 @@ footer{
 
 .mainWrap{
   display: grid;
-  height: 100vh;
+  
   grid-template-columns:230px 1fr ;
 
 }

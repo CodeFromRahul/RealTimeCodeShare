@@ -21,7 +21,9 @@ const [roomid,setRoomId]=useState('');
     const joinRoom=()=>{
         if(!roomid ){
             toast.error("Enter Room ID")
+            
         }
+
         else{
             toast.success("Room Joined")
 
@@ -29,6 +31,7 @@ const [roomid,setRoomId]=useState('');
         
 
         // Redirect to room
+
         Navigate(`/editor/${roomid}`,{
             state:{
             roomid,
@@ -38,6 +41,8 @@ const [roomid,setRoomId]=useState('');
         
 
     }
+
+    // Error  handling 
 
     const handleInputEnter=(e)=>{
        
@@ -60,7 +65,7 @@ const [roomid,setRoomId]=useState('');
         </div>
         </div>
         <footer>
-            <h4>BUILT WITH❤️❤️❤️</h4>
+            {/* <h4>BUILT WITH❤️❤️❤️</h4> */}
         </footer>
     </div>
   )
